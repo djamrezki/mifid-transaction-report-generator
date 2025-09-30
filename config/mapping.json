@@ -1,0 +1,75 @@
+{
+  "namespaces": {
+    "xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "head003": "urn:iso:std:iso:20022:tech:xsd:head.003.001.01",
+    "head001": "urn:iso:std:iso:20022:tech:xsd:head.001.001.01",
+    "msg":     "urn:iso:std:iso:20022:tech:xsd:auth.016.001.01"
+  },
+  "root": {
+    "qname": "BizData",
+    "attributes": {
+      "xsi:schemaLocation": "urn:iso:std:iso:20022:tech:xsd:head.003.001.01 head.003.001.01.xsd urn:iso:std:iso:20022:tech:xsd:head.001.001.01 head.001.001.01_ESMAUG_1.0.0.xsd urn:iso:std:iso:20022:tech:xsd:auth.016.001.01 auth.016.001.01_ESMAUG_Reporting_1.1.0.xsd"
+
+    },
+    "_xmlns": "urn:iso:std:iso:20022:tech:xsd:head.003.001.01",
+    "children": {
+      "Hdr": {
+        "AppHdr": {
+          "_xmlns": "urn:iso:std:iso:20022:tech:xsd:head.001.001.01",
+          "Fr": {
+            "OrgId": {
+              "Id": {
+                "OrgId": {
+                  "Othr": {
+                    "Id": "{ENV:FIRM_LEI:UNKNOWN}",
+                    "SchmeNm": { "Prtry": "LEI" }
+                  }
+                }
+              }
+            }
+          },
+          "CreDt": "{NOW_ISO}"
+        }
+      }
+    ,
+      "Pyld": {
+        "Document": {
+          "_xmlns": "urn:iso:std:iso:20022:tech:xsd:auth.016.001.01",
+          "FinInstrmRptgTxRpt": { }
+        }
+      }
+    }
+  },
+
+  "record_container_qname": "FinInstrmRptgTxRpt",
+  "record_element_qname": "Tx",
+
+  "fields": [
+    { "from": "trade_id",               "to": "New/TxId" },
+    { "from": "{ENV:FIRM_LEI:UNKNOWN}", "to": "New/ExctgPty" },
+    { "from": "false",                  "to": "New/InvstmtPtyInd" },
+    { "from": "{ENV:FIRM_LEI:UNKNOWN}", "to": "New/SubmitgPty" },
+
+    { "from": "buyer_lei",              "to": "New/Buyr/AcctOwnr/Id/LEI" },
+    { "from": "seller_lei",             "to": "New/Sellr/AcctOwnr/Id/LEI" },
+
+    { "from": "false",                  "to": "New/OrdrTrnsmssn/TrnsmssnInd" },
+
+    { "from": "execution_timestamp",    "to": "New/Tx/TradDt" },
+
+    { "from": "DEAL",                   "to": "New/Tx/TradgCpcty" },
+
+    { "from": "quantity",               "to": "New/Tx/Qty/Unit" },
+
+    { "from": "price",                  "to": "New/Tx/Pric/Pric/MntryVal/Amt" },
+    { "from": "trade_currency",         "to": "New/Tx/Pric/Pric/MntryVal/Amt@Ccy" },
+
+    { "from": "venue",                  "to": "New/Tx/TradVn" },
+
+    { "from": "isin",                   "to": "New/FinInstrm/Id" },
+
+    { "from": "NORE",                   "to": "New/ExctgPrsn/Clnt" },
+    { "from": "false",                  "to": "New/AddtlAttrbts/SctiesFincgTxInd" }
+  ]
+
+}

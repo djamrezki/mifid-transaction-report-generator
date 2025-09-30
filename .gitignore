@@ -1,0 +1,30 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+mifid_tx_gen.egg-info/
+
+# Virtual environments
+# Virtual environments
+.venv/
+venv*/
+ENV*/
+
+# Mac
+.DS_Store
+
+# IDE configs
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
